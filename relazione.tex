@@ -1,0 +1,302 @@
+\documentclass[a4paper,11pt,oneside]{article}
+
+% =============================================================================
+% DATI DEL FRONTESPIZIO -- da compilare
+% =============================================================================
+\newcommand{\studente}{Nome Cognome}
+\newcommand{\matricola}{0001234567}
+\newcommand{\corsodistudi}{Laurea Magistrale in Ingegneria e Scienze Informatiche}
+\newcommand{\titoloattivita}{Titolo dell'attività svolta}
+\newcommand{\tpv}{TPV} % es. nome/codice dell'attività di tirocinio
+\newcommand{\cfu}{12}
+\newcommand{\azienda}{Nome Azienda S.p.A.}
+\newcommand{\tutoraziendale}{Nome Cognome}
+\newcommand{\tutoraccademico}{Prof.\ Nome Cognome}
+\newcommand{\periodo}{dal 01/03/2026 al 31/05/2026}
+\newcommand{\annoaccademico}{2025/2026}
+
+% Bozza: mostra le indicazioni di compilazione e le note (todonotes).
+% Per la versione da consegnare: sostituire con \bozzafalse
+\newif\ifbozza
+\bozzatrue
+
+% =============================================================================
+% PACCHETTI
+% =============================================================================
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+\fi
+% provide=* carica l'italiano dai file .ini di babel: non serve babel-italian
+\usepackage[italian,provide=*]{babel}
+\usepackage{lmodern}
+\usepackage[varqu,varl,scaled=0.95]{zi4} % Inconsolata come font monospaziato
+\usepackage{microtype}
+\usepackage[margin=2.5cm,marginparwidth=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{url}
+\ifbozza
+  \usepackage[textsize=small]{todonotes}
+\else
+  \usepackage[disable]{todonotes}
+\fi
+\usepackage[hidelinks]{hyperref}
+\usepackage[italian,capitalise,noabbrev]{cleveref}
+\crefname{listing}{Listato}{Listati}
+
+\hypersetup{
+  pdftitle={\titoloattivita},
+  pdfauthor={\studente},
+}
+
+% Stile del codice (colori ispirati al tema chiaro degli IDE JetBrains)
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{coderule}{HTML}{4A6FA5}
+\definecolor{codekeyword}{HTML}{0033B3}
+\definecolor{codestring}{HTML}{067D17}
+\definecolor{codecomment}{HTML}{8C8C8C}
+\definecolor{codenumber}{HTML}{A0A7B4}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekeyword}\bfseries,
+  stringstyle=\color{codestring},
+  commentstyle=\color{codecomment},
+  backgroundcolor=\color{codebg},
+  frame=l,
+  framerule=2pt,
+  rulecolor=\color{coderule},
+  framesep=0pt,
+  xleftmargin=2.6em,
+  framexleftmargin=2.2em,
+  framextopmargin=6pt,
+  framexbottommargin=6pt,
+  numbers=left,
+  numbersep=1em,
+  numberstyle=\scriptsize\ttfamily\color{codenumber},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  upquote=true,
+  tabsize=4,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{codecomment}{$\hookrightarrow$}\space},
+  captionpos=b,
+  aboveskip=1em,
+  belowskip=0.5em,
+  % Lettere accentate nel codice (necessario con pdflatex)
+  literate=
+    {à}{{\`a}}1 {è}{{\`e}}1 {é}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\`E}}1 {É}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1,
+}
+\renewcommand{\lstlistingname}{Listato}
+\renewcommand{\lstlistlistingname}{Elenco dei listati}
+
+% Indicazioni per la compilazione: visibili solo in bozza
+\newcommand{\guida}[1]{\todo[inline,color=blue!8,bordercolor=blue!40,linecolor=blue!40]{\textbf{Indicazioni:} #1}}
+% Note dei tutor allo studente durante la revisione
+\newcommand{\notatutor}[1]{\todo[inline,color=orange!20,bordercolor=orange,linecolor=orange]{\textbf{Tutor:} #1}}
+
+% =============================================================================
+% DOCUMENTO
+% =============================================================================
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\large\scshape Alma Mater Studiorum -- Università di Bologna\par}
+  \vspace{0.5em}
+  {\corsodistudi\par}
+  \vspace{0.3em}
+  {\small Anno Accademico \annoaccademico\par}
+
+  \vfill
+
+  {\large Relazione sull'attività di \tpv{} (\cfu~CFU)\par}
+  \vspace{1.5em}
+  {\LARGE\bfseries \titoloattivita\par}
+  \vspace{1.5em}
+  {\large presso \azienda\par}
+
+  \vfill
+
+  \begin{minipage}[t]{0.48\textwidth}
+    \raggedright
+    \textbf{Tutor accademico}\\
+    \tutoraccademico\\[1em]
+    \textbf{Tutor aziendale}\\
+    \tutoraziendale
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \raggedleft
+    \textbf{Studente}\\
+    \studente\\[1em]
+    \textbf{Matricola}\\
+    \matricola
+  \end{minipage}
+
+  \vfill
+
+  {Periodo di svolgimento: \periodo\par}
+\end{titlepage}
+
+% =============================================================================
+% SOMMARIO
+% =============================================================================
+\section*{Sommario}
+\addcontentsline{toc}{section}{Sommario}
+
+\guida{Massimo una pagina. Riassumere in modo autocontenuto il contesto
+(azienda, team, dominio), gli obiettivi dell'attività, il lavoro svolto
+personalmente e i principali risultati raggiunti.
+Chi legge solo questa pagina deve capire cosa è stato fatto e con quale esito.}
+
+Testo del sommario.
+
+\clearpage
+
+\tableofcontents
+\clearpage
+
+% =============================================================================
+% INTRODUZIONE
+% =============================================================================
+\section{Introduzione}
+\label{sec:introduzione}
+
+\subsection{Contesto}
+\label{sec:contesto}
+
+\guida{Descrivere l'azienda/ente ospitante, il suo dominio di attività
+e il progetto o prodotto all'interno del quale si colloca l'attività svolta.}
+
+Testo.
+
+\subsection{Obiettivi}
+\label{sec:obiettivi}
+
+\guida{Elencare gli obiettivi dell'attività. Se possibile, renderli verificabili:
+nelle conclusioni (\cref{sec:risultati}) si dovrà indicare per ciascuno se e in che misura è stato raggiunto.}
+
+\begin{enumerate}
+  \item Primo obiettivo.
+  \item Secondo obiettivo.
+\end{enumerate}
+
+\subsection{Organizzazione del lavoro}
+\label{sec:organizzazione}
+
+\guida{Descrivere il team in cui si è stati inseriti (dimensione, ruoli),
+gli stakeholder con cui si è interagito (es.\ colleghi, responsabili, clienti, utenti),
+il processo di sviluppo adottato (es.\ Scrum, kanban, ...),
+come sono stati fissati gli obiettivi e come è stato monitorato l'avanzamento
+(riunioni periodiche, issue tracker, review, ...).}
+
+Testo.
+
+% =============================================================================
+% ATTIVITÀ SVOLTE
+% =============================================================================
+\section{Attività svolte}
+\label{sec:attivita}
+
+\guida{Descrivere nel dettaglio ciò che è stato svolto \emph{personalmente},
+distinguendolo chiaramente dal lavoro del resto del team.
+Scendere nel tecnico: tecnologie, architettura, scelte progettuali e loro motivazioni,
+problemi incontrati e soluzioni adottate.}
+
+\subsection{Tecnologie adottate}
+\label{sec:tecnologie}
+
+\guida{Elencare le tecnologie (linguaggi, framework, strumenti, servizi)
+utilizzate, specificando per ciascuna a cosa è servita.
+Le fonti (documentazione, articoli) vanno citate.}
+
+Testo, con eventuali citazioni~\cite{esempio}.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}lX@{}}
+    \toprule
+    \textbf{Tecnologia} & \textbf{Utilizzo} \\
+    \midrule
+    Tecnologia A & Descrizione dell'utilizzo. \\
+    Tecnologia B & Descrizione dell'utilizzo. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Tecnologie adottate durante l'attività.}
+  \label{tab:tecnologie}
+\end{table}
+
+\subsection{Task svolti}
+\label{sec:task}
+
+\guida{Descrivere i task svolti, idealmente in ordine cronologico o per area.
+Per ciascuno: obiettivo, cosa è stato fatto, eventuali difficoltà e come sono state affrontate.
+Usare figure (es.\ diagrammi architetturali, screenshot) e frammenti di codice dove utili.}
+
+\subsubsection{Primo task}
+
+Testo. Si veda ad esempio \cref{fig:architettura} e \cref{lst:esempio}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{example-image}
+  \caption{Architettura del sistema.}
+  \label{fig:architettura}
+\end{figure}
+
+\begin{lstlisting}[language=Python,caption={Frammento di codice di esempio.},label={lst:esempio}]
+# Calcola la media dei valori: è solo un esempio
+def media(valori: list[float]) -> float:
+    if not valori:
+        raise ValueError("lista vuota")
+    return sum(valori) / len(valori)
+\end{lstlisting}
+
+\subsubsection{Secondo task}
+
+Testo.
+
+% =============================================================================
+% CONCLUSIONI
+% =============================================================================
+\section{Conclusioni e risultati raggiunti}
+\label{sec:conclusioni}
+
+\subsection{Risultati raggiunti}
+\label{sec:risultati}
+
+\guida{Per ciascuno degli obiettivi fissati in \cref{sec:obiettivi},
+indicare se e in che misura è stato raggiunto, con evidenze concrete
+(funzionalità rilasciate, metriche, feedback ricevuti, ...).}
+
+Testo.
+
+\subsection{Analisi retrospettiva}
+\label{sec:retrospettiva}
+
+\guida{Riflettere criticamente sull'esperienza: cosa ha funzionato e cosa no,
+cosa si farebbe diversamente, quali competenze (tecniche e trasversali)
+sono state acquisite, quanto il percorso di studi ha preparato all'attività.}
+
+Testo.
+
+\subsection{Sviluppi futuri}
+\label{sec:sviluppi}
+
+\guida{Facoltativo: possibili estensioni o prosecuzioni del lavoro svolto.}
+
+Testo.
+
+% Se non si cita alcuna fonte, commentare le due righe seguenti
+% (altrimenti compare una bibliografia vuota).
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+\end{document}
