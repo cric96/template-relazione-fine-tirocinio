@@ -17,6 +17,12 @@ Per compilare in locale (richiede TeX Live):
 latexmk -pdf relazione.tex
 ```
 
+Consiglio di impostare VS code con l'estensione LaTeX Workshop, che permette di compilare e visualizzare il PDF direttamente dall'editor.
+
+Link: 
+- [VS Code](https://code.visualstudio.com/)
+- [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+
 ## Struttura
 
 `relazione.tex` contiene, nell'ordine:
@@ -27,7 +33,7 @@ latexmk -pdf relazione.tex
 4. attività svolte personalmente: tecnologie adottate, task svolti;
 5. conclusioni: risultati raggiunti rispetto agli obiettivi e analisi retrospettiva.
 
-Le fonti citate vanno in `bibliografia.bib` (BibTeX).
+Le fonti citate vanno in `bibliografia.bib` (BibTeX). Se presenti-
 
 ## Bozza e versione finale
 
