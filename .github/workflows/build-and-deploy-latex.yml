@@ -19,7 +19,7 @@ permissions: { }
 jobs:
   success:
     # ubuntu-latest (26.04) breaks the remove-unwanted-software step of the action
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     steps:
